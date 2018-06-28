@@ -17,7 +17,8 @@ type Handler struct {
 
 type queryRequest struct {
 	Query    string `json:"query"`
-	TypeWord string `json:"type_word,omitempty"`
+	TypeWord bool   `json:"type_word,string" default:"true"`
+	Min      int    `json:"min" default:"1"`
 }
 
 func (h *Handler) APIHandler(w http.ResponseWriter, r *http.Request) {

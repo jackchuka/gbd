@@ -17,10 +17,11 @@
     <a class="navbar-brand" href="#">Cloud</a>
     <form id="queryForm" class="input-group">
         <input type="text" name="query" class="form-control" placeholder="SELECT description FROM items LIMIT 5">
+        <input type="text" name="min" class="form-control col-sm-2" placeholder="0, Min. Occurrence">
         <select name="type_word" class="custom-select col-sm-2">
-            <option selected>Separation Type</option>
-            <option value="0">Space</option>
-            <option value="1">Columns</option>
+            <option selected value="true">Separation Type</option>
+            <option value="true">Space</option>
+            <option value="false">Columns</option>
         </select>
         <div class="input-group-append">
             <button type="submit" class="btn btn-secondary">Run Query</button>

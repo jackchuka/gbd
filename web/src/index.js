@@ -8,12 +8,11 @@ let chart = echarts.init(document.getElementById('main'));
 document.querySelector("#queryForm").addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("submit!");
-    let query = document.querySelector('#queryForm input[name="query"]').value;
+    let query = document.querySelector('#queryForm [name="query"]').value;
     let type_word = document.querySelector('#queryForm [name="type_word"]').value;
+    let min = parseInt(document.querySelector('#queryForm [name="min"]').value);
 
-    console.log(type_word)
-
-    let data = {query, type_word};
+    let data = {query, type_word, min};
 
     axios.post('/api', data).then(response => {
         let keywords = response.data;
@@ -31,7 +30,7 @@ document.querySelector("#queryForm").addEventListener("submit", (e) => {
             series: [{
                 type: 'wordCloud',
                 sizeRange: [10, 100],
-                rotationRange: [-90, 90],
+                rotationRange: [0, 0],
                 rotationStep: 45,
                 gridSize: 4,
                 width: '100%',

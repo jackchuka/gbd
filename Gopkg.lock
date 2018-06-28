@@ -20,6 +20,17 @@
   version = "v1.6.2"
 
 [[projects]]
+  name = "github.com/jdkato/prose"
+  packages = [
+    "internal/model",
+    "internal/util",
+    "tag",
+    "tokenize"
+  ]
+  revision = "20d3663d4bc9dd10d75abcde9d92e04b4861c674"
+  version = "v1.1.0"
+
+[[projects]]
   branch = "master"
   name = "github.com/jmoiron/sqlx"
   packages = [
@@ -29,14 +40,35 @@
   revision = "0dae4fefe7c0e190f7b5a78dac28a1c82cc8d849"
 
 [[projects]]
+  name = "github.com/montanaflynn/stats"
+  packages = ["."]
+  revision = "1bf9dbcd8cbe1fdb75add3785b1d4a9a646269ab"
+  version = "0.3.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shogo82148/go-shuffle"
+  packages = ["."]
+  revision = "27e6095f230d6c769aafa7232db643a628bd87ad"
+
+[[projects]]
   name = "google.golang.org/appengine"
   packages = ["cloudsql"]
   revision = "b1f26356af11148e710935ed1ac8a7f5702c7612"
   version = "v1.1.0"
 
+[[projects]]
+  name = "gopkg.in/neurosnap/sentences.v1"
+  packages = [
+    ".",
+    "data"
+  ]
+  revision = "a7f18ead1433a139742a8b42ce7a059cfb484d60"
+  version = "v1.0.6"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "8f2d48d80b4786bac7a2a7e1fc880b1f71021ba4a49cde54661e12998b45f2ca"
+  inputs-digest = "bce31a092a6e7fec922e0910123afdc3dca31ddf52bf3dc799fc9202baacf55e"
   solver-name = "gps-cdcl"
   solver-version = 1

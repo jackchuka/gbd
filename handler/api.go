@@ -4,45 +4,21 @@ import (
 	"encoding/json"
 	"log"
 	"strings"
+
+	"github.com/jdkato/prose/tag"
+	"github.com/jdkato/prose/tokenize"
 	"github.com/jmoiron/sqlx"
 )
 
 var commonWords = map[string]int{
-	"a":    1,
-	"an":   1,
-	"and":  1,
-	"are":  1,
-	"as":   1,
-	"at":   1,
-	"be":   1,
-	"for":  1,
-	"from": 1,
-	"has":  1,
-	"he":   1,
-	"in":   1,
-	"is":   1,
-	"it":   1,
-	"its":  1,
-	"of":   1,
-	"on":   1,
-	"that": 1,
-	"the":  1,
-	"to":   1,
-	"was":  1,
-	"were": 1,
-	"will": 1,
-	"with": 1,
-	"#":    1,
-	"-":    1,
-	"_":    1,
-	".":    1,
-	",":    1,
-	":":    1,
-	"":     1,
+	"new":  1,
+	"old":  1,
+	"size": 1,
 }
 
 // ParseWords will return weight JSON
 func ParseWords(rows sqlx.Rows, req queryRequest) []byte {
+	log.Println(req)
 	var words []string
 	var buffer strings.Builder
 	// Scan hack
@@ -63,23 +39,41 @@ func ParseWords(rows sqlx.Rows, req queryRequest) []byte {
 			if b, ok := val.([]byte); ok {
 				v := string(b)
 				words = append(words, v)
-				buffer.WriteString(v)
-				buffer.WriteString(" ")
+				buffer.WriteString(v + " ")
 			}
 		}
 	}
 
-	if req.TypeWord != "1" {
-		words = strings.Split(strings.ToLower(buffer.String()), " ")
+	if req.TypeWord {
+		words = []string{}
+		tokens := tokenize.NewTreebankWordTokenizer().Tokenize(buffer.String())
+
+		tagger := tag.NewPerceptronTagger()
+		for _, tok := range tagger.Tag(tokens) {
+			if tok.Tag == "NNP" {
+				words = append(words, tok.Text)
+			}
+		}
 	}
 
 	m := map[string]int{}
 	for _, word := range words {
 		// filter common words
-		if _, ok := commonWords[word]; ok {
+		if _, ok := commonWords[strings.ToLower(word)]; ok {
+			continue
+		}
+		if len(word) < 3 {
 			continue
 		}
 		m[word] = m[word] + 1
+	}
+
+	if req.Min > 0 {
+		for key, value := range m {
+			if value < req.Min {
+				delete(m, key)
+			}
+		}
 	}
 
 	result, err := json.MarshalIndent(m, "", "    ")
