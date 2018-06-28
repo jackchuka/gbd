@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"strings"
-
 	"github.com/jmoiron/sqlx"
 )
 
@@ -70,7 +69,9 @@ func ParseWords(rows sqlx.Rows, req queryRequest) []byte {
 		}
 	}
 
-	words = strings.Split(strings.ToLower(buffer.String()), " ")
+	if req.TypeWord != "1" {
+		words = strings.Split(strings.ToLower(buffer.String()), " ")
+	}
 
 	m := map[string]int{}
 	for _, word := range words {

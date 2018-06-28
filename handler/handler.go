@@ -17,7 +17,7 @@ type Handler struct {
 
 type queryRequest struct {
 	Query    string `json:"query"`
-	TypeWord int    `json:"type_word,omitempty"`
+	TypeWord string `json:"type_word,omitempty"`
 }
 
 func (h *Handler) APIHandler(w http.ResponseWriter, r *http.Request) {
@@ -33,6 +33,7 @@ func (h *Handler) APIHandler(w http.ResponseWriter, r *http.Request) {
 	var req queryRequest
 	if err := json.Unmarshal(body, &req); err != nil {
 		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+		log.Println(string(body))
 		w.WriteHeader(http.StatusBadRequest)
 		log.Println(err)
 		return

@@ -9,8 +9,11 @@ document.querySelector("#queryForm").addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("submit!");
     let query = document.querySelector('#queryForm input[name="query"]').value;
+    let type_word = document.querySelector('#queryForm [name="type_word"]').value;
 
-    let data = {query};
+    console.log(type_word)
+
+    let data = {query, type_word};
 
     axios.post('/api', data).then(response => {
         let keywords = response.data;
@@ -60,7 +63,10 @@ document.querySelector("#queryForm").addEventListener("submit", (e) => {
     });
 });
 
+chart.on('click', function (params) {
+    console.log(params);
+});
 
-window.onresize = function () {
+window.onresize = () => {
     chart.resize();
-}
+};

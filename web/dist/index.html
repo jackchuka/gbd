@@ -17,6 +17,11 @@
     <a class="navbar-brand" href="#">Cloud</a>
     <form id="queryForm" class="input-group">
         <input type="text" name="query" class="form-control" placeholder="SELECT description FROM items LIMIT 5">
+        <select name="type_word" class="custom-select col-sm-2">
+            <option selected>Separation Type</option>
+            <option value="0">Space</option>
+            <option value="1">Columns</option>
+        </select>
         <div class="input-group-append">
             <button type="submit" class="btn btn-secondary">Run Query</button>
         </div>
