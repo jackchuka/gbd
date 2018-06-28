@@ -8,6 +8,18 @@
   version = "v1.4.0"
 
 [[projects]]
+  name = "github.com/gorilla/context"
+  packages = ["."]
+  revision = "08b5f424b9271eedf6f9f0ce86cb9396ed337a42"
+  version = "v1.1.1"
+
+[[projects]]
+  name = "github.com/gorilla/mux"
+  packages = ["."]
+  revision = "e3702bed27f0d39777b0b37b664b6280e8ef8fbf"
+  version = "v1.6.2"
+
+[[projects]]
   branch = "master"
   name = "github.com/jmoiron/sqlx"
   packages = [
@@ -25,6 +37,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "07f4ca52f51c6428338bb3fc4abe30cf75f1adf7620e1f8d20e03923fd5f32cb"
+  inputs-digest = "8f2d48d80b4786bac7a2a7e1fc880b1f71021ba4a49cde54661e12998b45f2ca"
   solver-name = "gps-cdcl"
   solver-version = 1
