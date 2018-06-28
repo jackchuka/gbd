@@ -1,13 +1,14 @@
 package handler
 
 import (
-	"net/http"
-	"io/ioutil"
-	"io"
-	"log"
 	"encoding/json"
-	"github.com/jmoiron/sqlx"
+	"io"
+	"io/ioutil"
+	"log"
+	"net/http"
+
 	"github.com/jackchuka/gbd/configs"
+	"github.com/jmoiron/sqlx"
 )
 
 type Handler struct {

@@ -3,11 +3,12 @@ package main
 import (
 	"log"
 	"net/http"
+
 	_ "github.com/go-sql-driver/mysql"
 
-	"github.com/jackchuka/gbd/handler"
 	"github.com/gorilla/mux"
 	"github.com/jackchuka/gbd/configs"
+	"github.com/jackchuka/gbd/handler"
 )
 
 func main() {
